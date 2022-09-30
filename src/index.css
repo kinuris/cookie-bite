@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("./assets/static/Montserrat-Medium.ttf");
+}
+
+* {
+    margin: 0;
+}
