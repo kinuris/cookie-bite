@@ -5,8 +5,8 @@ import { Sidebar } from "../root-components/Sidebar";
 import { foreground } from "../Colors";
 import { motion } from "framer-motion"
 
-import logo from "./../assets/logo.svg"
 import navMenu from "./../assets/menu_nav.svg"
+import logo from "./../assets/logo.svg"
 import searchLogo from "./../assets/search.svg"
 import { Usernav } from "../root-components/Usernav";
 import { Home } from "./Home";
@@ -15,6 +15,7 @@ import { Menu } from "./Menu";
 import { Inventory } from "./Inventory";
 import { AboutUs } from "./AboutUs";
 import { useState } from "react";
+import { ManageMenuItems } from "./ManageMenuItems";
 
 export default function Root() {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -62,6 +63,7 @@ export default function Root() {
 
         <div css={css`
             width: 100%;
+            height: 100%;
           `}>
           <nav css={css`
             display: flex;
@@ -103,6 +105,7 @@ export default function Root() {
               <Route path="/menu" element={<Menu />} /> 
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/about" element={<AboutUs />} />
+              <Route path="/manage-menu-items" element={<ManageMenuItems />} />
             </Route>
           </Routes>
         </div>
@@ -114,6 +117,7 @@ const AnimationLayout = () => {
   const { pathname } = useLocation()
   return (
     <motion.div
+      style={{ height: 'calc(100% - 65px)' }}
       key={pathname}
       transition={{ duration: 0.2 }}
       initial={{ opacity: 0 }}
