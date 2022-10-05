@@ -2,16 +2,18 @@
 
 import { css } from "@emotion/react"
 import { useQuery } from "@apollo/client"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import { User, UsernavProps } from "../vite-env"
 import { Link } from "react-router-dom"
 
 import gql from "graphql-tag"
 import rightArrow from "./../assets/right_arrow.svg"
 import userdefaultLogo from "./../assets/user_default_profile.svg"
-import { useEffect, useRef, useState } from "react"
-import { foreground, textcolor } from "../Colors"
+import { RefObject, useEffect, useRef, useState } from "react"
+import { background, foreground, textcolor } from "../Colors"
 import { URI } from "../main"
+import { SyncLoader } from "react-spinners"
+import useComponentVisible from "../custom-hooks/useComponentVisible"
 
 const FETCH_USERDATA = gql`
     query FetchUserdata {
@@ -29,7 +31,7 @@ export function Usernav({ setLogin, setCurrentUser }: UsernavProps) {
     const { loading, error, data } = useQuery<{ getUserData: User }>(FETCH_USERDATA)
 
     if (loading) {
-        return <h3>Loading</h3>
+        return <SyncLoader color={background} size={10} cssOverride={{ marginRight: '2em' }} />
     }
 
     if (error) {
@@ -40,8 +42,6 @@ export function Usernav({ setLogin, setCurrentUser }: UsernavProps) {
 
     if (user != null) {
         setLogin(true)
-
-       
     }
 
     return (
@@ -63,7 +63,7 @@ export function Usernav({ setLogin, setCurrentUser }: UsernavProps) {
                     user ? 
                     <>
                         <p>{user?.username}</p>
-                        <MyDropDown />
+                        <MyDropDown user={user as User} />
                     </>
                     : 
                     <>
@@ -81,11 +81,11 @@ export function Usernav({ setLogin, setCurrentUser }: UsernavProps) {
     )
 }
 
-function MyDropDown() {
-    const [active, setActive] = useState(false)
+function MyDropDown({ user }: { user: User }) {
+    const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
 
     const logout = useRef<HTMLLIElement>(null)
-
+   
     useEffect(() => {
         const logoutBtn = logout.current as HTMLLIElement
         const clearAll = async () => {
@@ -96,23 +96,22 @@ function MyDropDown() {
         }
 
         logoutBtn.addEventListener('click', clearAll)
-
         return () => {
             logoutBtn.removeEventListener('click', clearAll)
         }
-    }, [])
+    }, [isComponentVisible])
 
     return (
-        <>
+        <div ref={ref as RefObject<HTMLDivElement> | undefined}>
             <motion.img css={css`
                 margin: 0 !important;
                 padding: 12px !important;
-            `} initial={{ rotateZ: 90, scale: 0.5 }} animate={active ? { rotateZ: 270 } : { rotateZ: 90 } } whileHover={{ scale: 0.6 }} src={rightArrow} onClick={() => setActive(!active)} alt="DropDown" />
+            `} initial={{ rotateZ: 90, scale: 0.5 }} animate={isComponentVisible ? { rotateZ: 270 } : { rotateZ: 90 } } whileHover={{ scale: 0.6 }} src={rightArrow} onClick={() => setIsComponentVisible(!isComponentVisible)} alt="DropDown" />
 
             <motion.div
                     initial={{ x: 250 }}
                     transition={{ ease: "linear", duration: 0.15 }}
-                    animate={active ? { x: 0 } : { x: 250 }}
+                    animate={isComponentVisible ? { x: 0 } : { x: 250 }}
                     css={css`
                         margin: 0 !important; 
                         position: fixed;
@@ -132,17 +131,24 @@ function MyDropDown() {
                     li {
                         margin: 0;
                         padding: 10px;
+                        color: white;
 
                         :hover {
                             color: ${textcolor};
+                            background-color: ${background};
                         }
                     }
                 `}>
+                    {user?.admin && <Link to="/manage-menu-items" style={{ textDecoration: 'none', margin: 0 }}>
+                        <motion.li>
+                            <p>Manage Items (ADMIN)</p>
+                        </motion.li>
+                    </Link>}
                     <motion.li ref={logout}>
                         <p>Log out</p>
                     </motion.li>
                 </motion.ul>
             </motion.div>
-        </>
+        </div>
     )
 }
