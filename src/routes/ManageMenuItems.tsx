@@ -38,7 +38,6 @@ export function ManageMenuItems() {
             }
 
             await Promise.all(stagedFoods.map(async ({ food, variants }) => {
-                console.log(typeof variants[0].price)
 
                 await registerFoodAndVariants({ variables: {
                     foodAndVariants: {
