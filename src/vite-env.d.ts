@@ -8,6 +8,16 @@ export type User = {
     email: string,
 }
 
+export type Food = {
+    name: string,
+    imageLink: string
+}
+
+export type FoodVariants = {
+    name: string,
+    price: number
+}
+
 export type UsernavProps =  {
     setLogin: React.Dispatch<React.SetStateAction<boolean>>,
     setCurrentUser?: React.Dispatch<React.SetStateAction<{
