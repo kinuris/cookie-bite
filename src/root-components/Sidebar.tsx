@@ -63,13 +63,15 @@ export function Sidebar() {
                     </section>
                 </li>
             </Link>
-            <li>
-                <section>
-                    <img src={menuLogo} alt="Menu" />
-                    <p>Menu</p>
-                </section>
-                <motion.img initial={{ rotateZ: 90 }} src={rightArrow} alt="Expand" />
-            </li>
+            <Link to="/menu" style={{ textDecoration: 'none' }}>
+                <li>
+                    <section>
+                        <img src={menuLogo} alt="Menu" />
+                        <p>Menu</p>
+                    </section>
+                    <motion.img initial={{ rotateZ: 90 }} src={rightArrow} alt="Expand" />
+                </li>
+            </Link>
             <li>
                 <section>
                     <img src={cartLogo} alt="Order & Invoice" />
@@ -77,13 +79,15 @@ export function Sidebar() {
                 </section>
                 <motion.img initial={{ rotateZ: 90 }} src={rightArrow} alt="Expand" />
             </li>
-            <li>
-                <section>
-                    <img src={inventoryLogo} alt="Inventory" />
-                    <p>Inventory</p>
-                </section>
-                <motion.img initial={{ rotateZ: 90 }} src={rightArrow} alt="Expand" />
-            </li>
+            <Link to="/inventory" style={{ textDecoration: 'none' }}>
+                <li>
+                    <section>
+                        <img src={inventoryLogo} alt="Inventory" />
+                        <p>Inventory</p>
+                    </section>
+                    <motion.img initial={{ rotateZ: 90 }} src={rightArrow} alt="Expand" />
+                </li>
+            </Link>
             <Link to="/about" style={{ textDecoration: 'none' }}>
                 <li>
                     <section>
