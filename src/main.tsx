@@ -1,3 +1,5 @@
+import "./index.css"
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
@@ -7,7 +9,6 @@ import {
 } from "react-router-dom";
 
 import Root from "./routes/Root";
-import "./index.css"
 import { Login } from "./routes/Login";
 import { Signup } from "./routes/Signup";
 
