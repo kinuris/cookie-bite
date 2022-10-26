@@ -27,7 +27,7 @@ const FETCH_USERDATA = gql`
     }
 `
 
-export function Usernav({ setLogin, setCurrentUser }: UsernavProps) {
+export function Usernav({ setLogin }: UsernavProps) {
     const { loading, error, data } = useQuery<{ getUserData: User }>(FETCH_USERDATA)
 
     if (loading) {
