@@ -10,7 +10,8 @@ export type User = {
 
 export type Food = {
     name: string,
-    imageLink: string
+    imageLink: string,
+    category: string
 }
 
 export type FoodVariants = {
@@ -20,11 +21,16 @@ export type FoodVariants = {
 
 export type UsernavProps =  {
     setLogin: React.Dispatch<React.SetStateAction<boolean>>,
-    setCurrentUser?: React.Dispatch<React.SetStateAction<{
-        userID: string;
-        email?: string | undefined;
-        username?: string | undefined;
-        profileImageLink?: string | undefined;
-        admin?: boolean | undefined;
-    }>>
 }
+
+export type MenuProps =  {
+    loggedIn: boolean
+}
+
+export type FetchAll = {fetchAll: { itemID: string, imageLink: string, name: string, category: string, variants: {
+    price: number,
+    variantName: string
+}[]}[]}
+
+export type FetchAllDirect = FetchAllSingle[]
+export type FetchAllSingle = { food: Food, variants: FoodVariants[] }
