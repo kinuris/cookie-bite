@@ -102,7 +102,7 @@ export default function Root() {
           <Routes>
             <Route element={<AnimationLayout />}>
               <Route path="/" element={<Home />} /> 
-              <Route path="/menu" element={<Menu />} /> 
+              <Route path="/menu" element={<Menu loggedIn={loggedIn} />} /> 
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/about" element={<AboutUs />} />
               <Route path="/manage-menu-items" element={<ManageMenuItems />} />
