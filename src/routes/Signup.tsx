@@ -15,7 +15,6 @@ const CHECK_USERNAME_AND_EMAIL = gql`
         isAvailableEmail(email: $email)
         isAvailableUsername(username: $username)
     }
-  
 `
 
 export function Signup() {

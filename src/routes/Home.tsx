@@ -5,11 +5,12 @@ import { background2, foreground } from "../Colors"
 import { useRef, useState } from "react"
 
 import rightArrow from "./../assets/right_arrow_white.svg"
+import homepageCoffee from "./../assets/homepagecoffee.jpg"
 import ReactPaginate from "react-paginate"
 import { HashLoader } from "react-spinners"
 
 const urls = [
-    'https://picsum.photos/1280/720',
+    homepageCoffee,
     'https://picsum.photos/1280/721',
     'https://picsum.photos/1280/722',
     'https://picsum.photos/1280/723',
