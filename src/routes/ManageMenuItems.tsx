@@ -212,10 +212,13 @@ export function ManageMenuItems() {
 
     return (
         <>
-            <div key="commit">
+            <div css={css`
+                height: 45vh;
+                min-height: 450px;
+            `} key="commit">
                 <section key="display" css={css`
-                    height: calc(200px);
                     padding: 1em;
+                    height: calc(100% - 254px);
                     margin-bottom: 20px;
                     background-color: ${background};
                     overflow: auto;
@@ -352,15 +355,18 @@ export function ManageMenuItems() {
                     </form>
                 </section>
             </div>
-            {<div key="mutate">
+            {<div css={css`
+                height: 45vh;
+                min-height: 450px;
+            `} key="mutate">
                 <section css={css`
-                    height: calc(200px);
+                    height: calc(100% - 254px);
                     padding: 1em;
                     margin-bottom: 20px;
                     margin-top: 20px;
                     background-color: ${background};
                     overflow: auto;
-                `} id="top">
+                `} id="top-of-bottom">
                     {foodToMutate.map(({ food, variants }, index) => {
                         return (
                             <div key={food.name + index} css={css`
@@ -412,7 +418,7 @@ export function ManageMenuItems() {
                         flex-direction: column;
                         width: 35%;
                     }
-                `} id="bottom">
+                `} id="bottom-of-bottom">
                     <form ref={mutateFoodForm}>
                         <input type="button" value="Mark Food as Deleted" onClick={() => {
                             if(selectedFoodToMutate !== undefined) {

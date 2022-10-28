@@ -11,6 +11,7 @@ import {
 import Root from "./routes/Root";
 import { Login } from "./routes/Login";
 import { Signup } from "./routes/Signup";
+import { ManageMenuItems } from "./routes/ManageMenuItems";
 
 // export const URI = "https://idontknowanymore.xyz"
 export const URI = "http://localhost:5500"
@@ -27,6 +28,10 @@ const CustomRouter = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />
+  },
+  {
+    path: "/manage-menu-items",
+    element: <ManageMenuItems />
   }
 ], {
   basename: '/cookie-bite'
